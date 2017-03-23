@@ -1,0 +1,9 @@
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe.config
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.pdb
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csprojResolveAssemblyReference.cache
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.MainForm.resources
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.Properties.Resources.resources
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csproj.GenerateResource.Cache
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.exe
+c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.pdb
