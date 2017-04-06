@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimaryStaticAnalysis.DAL;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -28,6 +29,47 @@ namespace PrimaryStaticAnalysis.Service
 
                     result.Add(currentFloatValue);
                 }
+            }
+
+            return result;
+        }
+
+        public static List<DensityKvantilA> ReadDensityKvantils()
+        {
+            var result = new List<DensityKvantilA>();
+
+            using (var stream = new StreamReader(@"KvantilDensity.txt"))
+            {
+                double alpha = 0;
+                Dictionary<int, double> kvantilsM = new Dictionary<int, double>();
+                int m = 0;
+
+                while (!stream.EndOfStream)
+                {
+                    string line = stream.ReadLine();
+                    if (line == string.Empty)
+                    {
+                        break;
+                    }
+                    else if (line.Contains("a"))
+                    {
+                        if(kvantilsM.Count > 0)
+                        {
+                            result.Add(new DensityKvantilA(alpha, kvantilsM));
+                        }
+
+                        m = 0;
+                        alpha = Double.Parse(line.Remove(0, 1));
+                        kvantilsM.Clear();
+
+                        continue;
+                    }
+
+                    m++;
+                    kvantilsM.Add(m, Double.Parse(line));
+                }
+
+                result.Add(new DensityKvantilA(alpha, kvantilsM));
             }
 
             return result;

@@ -7,3 +7,12 @@ c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\Prima
 c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csproj.GenerateResource.Cache
 c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.exe
 c:\users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.pdb
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe.config
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.exe
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.pdb
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.pdb
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csprojResolveAssemblyReference.cache
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.MainForm.resources
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.Properties.Resources.resources
+C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csproj.GenerateResource.Cache

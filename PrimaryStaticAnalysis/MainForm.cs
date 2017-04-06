@@ -14,7 +14,7 @@ namespace PrimaryStaticAnalysis
         private List<double> dataItems;
         private VariationRow variationRow;
         private IntervalVariationRow iVariationRow;
-      
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,23 +22,25 @@ namespace PrimaryStaticAnalysis
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            //DialogResult result = openFileDialog.ShowDialog();
+            DialogResult result = openFileDialog.ShowDialog();
 
-            //if (result == DialogResult.OK)
-            //{
-            //    try
-            //    {
-            //        dataItems = FileReader.ReadFromFile(openFileDialog.FileName);
-            //    }
-            //    catch (FileLoadException ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //        return;
-            //    }
-                dataItems = FileReader.ReadFromFile(@"C:\\Users\\gekas\\Desktop\\StaticAnalysisAutomatisation_testData.txt");
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    dataItems = FileReader.ReadFromFile(openFileDialog.FileName);
+                }
+                catch (FileLoadException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                // dataItems = FileReader.ReadFromFile(@"C:\\Users\\gekas\\Desktop\\StaticAnalysisAutomatisation_testData.txt");
 
                 FillAllData(dataItems);
-           // }
+            }
+
+            comboBox1.SelectedIndex = 1;
         }
 
         private void FillAllData(List<double> dataItems)
@@ -165,10 +167,15 @@ namespace PrimaryStaticAnalysis
             var m = StatCharacteristicModel.Average.GetAverage(data);
             var sigma = StatCharacteristicModel.StandartDeviationNotSkew.GetValue(data);
 
+            dataGridView1.Rows.Clear();
             foreach (var variant in variants)
             {
                 crtEmpericalFunction.Series["Emperical"].Points.AddXY(variant.Value, variant.EmpericalFunction);
-                crtEmpericalFunction.Series["Density"].Points.AddXY(variant.Value, NormalDistribution.DensityFunction(variant.Value, m, sigma));
+                var ProbabilityFunction = NormalDistribution.DensityFunction(variant.Value, m, sigma);
+                crtEmpericalFunction.Series["Density"].Points.AddXY(variant.Value, ProbabilityFunction);
+                var newRowId = dataGridView1.Rows.Add();
+                dataGridView1.Rows[newRowId].Cells["value1"].Value = variant.Value;
+                dataGridView1.Rows[newRowId].Cells["probabilityFunction"].Value = ProbabilityFunction;
             }
         }
 
@@ -265,12 +272,27 @@ namespace PrimaryStaticAnalysis
 
             var items = GetAnomalItems(anomalIntervals);
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 dataItems.RemoveAll(i => i == item);
             }
 
             FillAllData(dataItems);
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var alpha = Double.Parse((string)comboBox1.SelectedItem);
+            var kvantils = FileReader.ReadDensityKvantils();
+            var v = iVariationRow.IntervalVariants.Count - 1;
+            var criticalValue = kvantils.Where(kv => kv.Alpha == alpha).First()[v];
+            var m = StatCharacteristicModel.Average.GetAverage(dataItems);
+            var sigma = StatCharacteristicModel.StandartDeviationNotSkew.GetValue(dataItems);
+
+            dgvPirson.Rows.Clear();
+            var newRowIndex = dgvPirson.Rows.Add();
+            dgvPirson.Rows[newRowIndex].Cells["statistic"].Value = PirsonCriteria.GetPirsonCriteria(iVariationRow, m, sigma);
+            dgvPirson.Rows[newRowIndex].Cells["CriticalValue"].Value = criticalValue;
         }
     }
 }

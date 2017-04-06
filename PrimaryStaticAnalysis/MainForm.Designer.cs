@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnLoad = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gvVariationRow = new System.Windows.Forms.DataGridView();
@@ -71,6 +71,16 @@
             this.tbY2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbY1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvPirson = new System.Windows.Forms.DataGridView();
+            this.statistic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CriticalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.summary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.value1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.probabilityFunction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariationRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvIntervalVariationRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudIntervalsCount)).BeginInit();
@@ -78,6 +88,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.crtEmpericalFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacteristics)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPirson)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoad
@@ -247,47 +260,47 @@
             // 
             // crtIntervalRow
             // 
-            chartArea1.Name = "ChartArea1";
-            this.crtIntervalRow.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.crtIntervalRow.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.crtIntervalRow.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.crtIntervalRow.Legends.Add(legend7);
             this.crtIntervalRow.Location = new System.Drawing.Point(508, 233);
             this.crtIntervalRow.Name = "crtIntervalRow";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.LegendText = "Частота";
-            series1.MarkerSize = 1;
-            series1.Name = "Frequency";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.LegendText = "Плотность в-и";
-            series2.Name = "ProbabilityDensity";
-            this.crtIntervalRow.Series.Add(series1);
-            this.crtIntervalRow.Series.Add(series2);
+            series13.ChartArea = "ChartArea1";
+            series13.Legend = "Legend1";
+            series13.LegendText = "Частота";
+            series13.MarkerSize = 1;
+            series13.Name = "Frequency";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series14.Legend = "Legend1";
+            series14.LegendText = "Плотность в-и";
+            series14.Name = "ProbabilityDensity";
+            this.crtIntervalRow.Series.Add(series13);
+            this.crtIntervalRow.Series.Add(series14);
             this.crtIntervalRow.Size = new System.Drawing.Size(407, 203);
             this.crtIntervalRow.TabIndex = 9;
             this.crtIntervalRow.Text = "chart1";
             // 
             // crtEmpericalFunction
             // 
-            chartArea2.Name = "ChartArea1";
-            this.crtEmpericalFunction.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.crtEmpericalFunction.Legends.Add(legend2);
+            chartArea8.Name = "ChartArea1";
+            this.crtEmpericalFunction.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.crtEmpericalFunction.Legends.Add(legend8);
             this.crtEmpericalFunction.Location = new System.Drawing.Point(508, 41);
             this.crtEmpericalFunction.Name = "crtEmpericalFunction";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series3.Legend = "Legend1";
-            series3.Name = "Emperical";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series4.Legend = "Legend1";
-            series4.LegendText = "Ф-я распр-я";
-            series4.Name = "Density";
-            this.crtEmpericalFunction.Series.Add(series3);
-            this.crtEmpericalFunction.Series.Add(series4);
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series15.Legend = "Legend1";
+            series15.Name = "Emperical";
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series16.Legend = "Legend1";
+            series16.LegendText = "Ф-я распр-я";
+            series16.Name = "Density";
+            this.crtEmpericalFunction.Series.Add(series15);
+            this.crtEmpericalFunction.Series.Add(series16);
             this.crtEmpericalFunction.Size = new System.Drawing.Size(407, 178);
             this.crtEmpericalFunction.TabIndex = 10;
             this.crtEmpericalFunction.Text = "chart1";
@@ -403,11 +416,99 @@
             this.tbY1.Size = new System.Drawing.Size(75, 20);
             this.tbY1.TabIndex = 0;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvPirson);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Location = new System.Drawing.Point(921, 41);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(614, 332);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Критерій згоди Пірсона";
+            // 
+            // dgvPirson
+            // 
+            this.dgvPirson.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.statistic,
+            this.CriticalValue,
+            this.summary});
+            this.dgvPirson.Location = new System.Drawing.Point(9, 70);
+            this.dgvPirson.Name = "dgvPirson";
+            this.dgvPirson.Size = new System.Drawing.Size(345, 75);
+            this.dgvPirson.TabIndex = 2;
+            // 
+            // statistic
+            // 
+            this.statistic.HeaderText = "Критерій згоди";
+            this.statistic.Name = "statistic";
+            // 
+            // CriticalValue
+            // 
+            this.CriticalValue.HeaderText = "Критичне значення";
+            this.CriticalValue.Name = "CriticalValue";
+            // 
+            // summary
+            // 
+            this.summary.HeaderText = "Висновок";
+            this.summary.Name = "summary";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Alpha:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "0,99",
+            "0,95",
+            "0,90",
+            "0,50",
+            "0,10",
+            "0,05",
+            "0,01"});
+            this.comboBox1.Location = new System.Drawing.Point(49, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.value1,
+            this.probabilityFunction});
+            this.dataGridView1.Location = new System.Drawing.Point(945, 203);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(248, 448);
+            this.dataGridView1.TabIndex = 14;
+            // 
+            // value1
+            // 
+            this.value1.HeaderText = "Value";
+            this.value1.Name = "value1";
+            // 
+            // probabilityFunction
+            // 
+            this.probabilityFunction.HeaderText = "ProbabilityFunction";
+            this.probabilityFunction.Name = "probabilityFunction";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 716);
+            this.ClientSize = new System.Drawing.Size(1544, 716);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvCharacteristics);
             this.Controls.Add(this.crtEmpericalFunction);
@@ -432,6 +533,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacteristics)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPirson)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,6 +579,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbY2;
         private System.Windows.Forms.ListBox lbAnomals;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dgvPirson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statistic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CriticalValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn summary;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn value1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn probabilityFunction;
     }
 }
 

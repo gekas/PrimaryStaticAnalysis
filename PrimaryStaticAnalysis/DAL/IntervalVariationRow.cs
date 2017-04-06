@@ -5,12 +5,16 @@ using PrimaryStaticAnalysis.BL;
 
 namespace PrimaryStaticAnalysis.DAL
 {
-    class IntervalVariationRow
+    public class IntervalVariationRow
     {
         public List<IntervalVariant> IntervalVariants = new List<IntervalVariant>();
+        public int N => vr.DataCount;
+
+        private VariationRow vr;
 
         public IntervalVariationRow(VariationRow variationRow, int intervalsCount)
         {
+            vr = variationRow;
             var h = Formulas.GetStep(variationRow, intervalsCount);
 
             var beginInterval = variationRow.Variants.First().Value - h / 2;
