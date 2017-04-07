@@ -71,6 +71,13 @@
             this.tbY2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbY1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvPirson = new System.Windows.Forms.DataGridView();
+            this.statistic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CriticalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.summary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariationRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvIntervalVariationRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudIntervalsCount)).BeginInit();
@@ -78,6 +85,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.crtEmpericalFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacteristics)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPirson)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoad
@@ -280,11 +289,13 @@
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series3.Legend = "Legend1";
+            series3.MarkerSize = 1;
             series3.Name = "Emperical";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series4.Legend = "Legend1";
             series4.LegendText = "Ф-я распр-я";
+            series4.MarkerSize = 1;
             series4.Name = "Density";
             this.crtEmpericalFunction.Series.Add(series3);
             this.crtEmpericalFunction.Series.Add(series4);
@@ -403,11 +414,77 @@
             this.tbY1.Size = new System.Drawing.Size(75, 20);
             this.tbY1.TabIndex = 0;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvPirson);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Location = new System.Drawing.Point(921, 41);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(363, 178);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Критерій згоди Пірсона";
+            // 
+            // dgvPirson
+            // 
+            this.dgvPirson.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.statistic,
+            this.CriticalValue,
+            this.summary});
+            this.dgvPirson.Location = new System.Drawing.Point(9, 70);
+            this.dgvPirson.Name = "dgvPirson";
+            this.dgvPirson.Size = new System.Drawing.Size(345, 75);
+            this.dgvPirson.TabIndex = 2;
+            // 
+            // statistic
+            // 
+            this.statistic.HeaderText = "Критерій згоди";
+            this.statistic.Name = "statistic";
+            // 
+            // CriticalValue
+            // 
+            this.CriticalValue.HeaderText = "Критичне значення";
+            this.CriticalValue.Name = "CriticalValue";
+            // 
+            // summary
+            // 
+            this.summary.HeaderText = "Висновок";
+            this.summary.Name = "summary";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Alpha:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "0,99",
+            "0,95",
+            "0,90",
+            "0,50",
+            "0,10",
+            "0,05",
+            "0,01"});
+            this.comboBox1.Location = new System.Drawing.Point(49, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 716);
+            this.ClientSize = new System.Drawing.Size(1289, 716);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvCharacteristics);
             this.Controls.Add(this.crtEmpericalFunction);
@@ -432,6 +509,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacteristics)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPirson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,6 +554,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbY2;
         private System.Windows.Forms.ListBox lbAnomals;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dgvPirson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statistic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CriticalValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn summary;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

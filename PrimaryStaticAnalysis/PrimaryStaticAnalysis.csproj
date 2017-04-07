@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\Formulas.cs" />
+    <Compile Include="BL\PirsonCriteria.cs" />
     <Compile Include="DAL\CharacteristicsGridModel.cs" />
+    <Compile Include="DAL\DensityKvantil.cs" />
     <Compile Include="DAL\IntervalVariationRow.cs" />
     <Compile Include="DAL\StatCharacteristicModel.cs" />
     <Compile Include="DAL\VariationRow.cs" />

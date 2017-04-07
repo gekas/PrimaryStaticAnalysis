@@ -49,6 +49,7 @@ namespace PrimaryStaticAnalysis.BL
 
     public static class NormalDistribution
     {
+        // Плостность распределения вероятностей f
         public static double ProbabilityDensity(double x, double m, double sigma)
         {
             var ePower = (((x - m) * (x - m)) / (2 * sigma * sigma));
@@ -57,9 +58,17 @@ namespace PrimaryStaticAnalysis.BL
             return first;
         }
 
+        // Распределение вероятностей F
         public static double DensityFunction(double x, double m, double sigma)
         {
             var u = (x - m) / sigma;
+
+            return DensityFunction(u);
+        }
+
+        public static double DensityFunction(double u)
+        {
+            if (u < 0) return 1 - DensityFunction(Math.Abs(u));
 
             double b1 = 0.31938153;
             double b2 = -0.356563782;
