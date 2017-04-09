@@ -51,6 +51,10 @@ namespace PrimaryStaticAnalysis.DAL
         public double Frequency { get; set; }
         public double RelativeFrequency { get; set; }
         public double CummulatedFrequency { get; set; }
+
+        /// <summary>
+        /// Относительная частота события значения
+        /// </summary>
         public double EmpericalFunction { get; set; }
 
         public int CompareTo(Variant other)

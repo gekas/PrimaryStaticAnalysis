@@ -34,6 +34,21 @@ namespace PrimaryStaticAnalysis.Service
             return result;
         }
 
+        public static Tuple<List<double>, List<double>> ReadTwoFromFile(string fileName)
+        {
+            List<double> firstSequence = new List<double>();
+            List<double> secondSequence = new List<double>();
+
+            foreach (string l in File.ReadAllLines(fileName))
+            {
+                var r = l.Split(null as char[], StringSplitOptions.RemoveEmptyEntries);
+                firstSequence.Add(Convert.ToDouble(r[0].Replace('.', ',')));
+                secondSequence.Add(Convert.ToDouble(r[1].Replace('.', ',')));
+            }
+
+            return new Tuple<List<double>, List<double>>(firstSequence, secondSequence);
+        }
+
         public static List<DensityKvantilA> ReadDensityKvantils()
         {
             var result = new List<DensityKvantilA>();
@@ -53,7 +68,7 @@ namespace PrimaryStaticAnalysis.Service
                     }
                     else if (line.Contains("a"))
                     {
-                        if(kvantilsM.Count > 0)
+                        if (kvantilsM.Count > 0)
                         {
                             result.Add(new DensityKvantilA(alpha, kvantilsM));
                         }

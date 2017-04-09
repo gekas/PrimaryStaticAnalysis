@@ -9,13 +9,14 @@ namespace PrimaryStaticAnalysis.DAL
     {
         public List<IntervalVariant> IntervalVariants = new List<IntervalVariant>();
         public int N => vr.DataCount;
+        public double h { get; private set; }
 
         private VariationRow vr;
 
         public IntervalVariationRow(VariationRow variationRow, int intervalsCount)
         {
             vr = variationRow;
-            var h = Formulas.GetStep(variationRow, intervalsCount);
+            h = Formulas.GetStep(variationRow, intervalsCount);
 
             var beginInterval = variationRow.Variants.First().Value - h / 2;
             while (beginInterval < variationRow.Variants.Last().Value)

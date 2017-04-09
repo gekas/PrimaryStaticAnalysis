@@ -49,7 +49,8 @@ namespace PrimaryStaticAnalysis.BL
 
     public static class NormalDistribution
     {
-        // Плостность распределения вероятностей f
+        // Функция плотности распределения вероятностей f
+        // Первая производная от функции распределения. Площадь соответсвтует вероятности возникновения события a <= X <= b
         public static double ProbabilityDensity(double x, double m, double sigma)
         {
             var ePower = (((x - m) * (x - m)) / (2 * sigma * sigma));
@@ -58,7 +59,8 @@ namespace PrimaryStaticAnalysis.BL
             return first;
         }
 
-        // Распределение вероятностей F
+        // Функция распределения вероятностей F
+        // Вероятность того, что случайная величина примет значение меньшее или равное х (х - произвольное действительное число)
         public static double DensityFunction(double x, double m, double sigma)
         {
             var u = (x - m) / sigma;
@@ -100,6 +102,16 @@ namespace PrimaryStaticAnalysis.BL
         public static double GetSigmaScore(List<double> data)
         {
             return StatCharacteristicModel.StandartDeviationNotSkew.GetValue(data);
+        }
+
+        /// <summary>
+        /// Дисперсия = квадрат среднеквадратического отклонения
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static double GetDispersion(List<double> data)
+        {
+            return GetSigmaScore(data) * GetSigmaScore(data);
         }
     }
 }
