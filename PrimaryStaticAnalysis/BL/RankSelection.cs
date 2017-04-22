@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PrimaryStaticAnalysis.BL
 {
-    class RankSelection
+    public class RankSelection
     {
         private int nextSelectionNumber = 1;
 

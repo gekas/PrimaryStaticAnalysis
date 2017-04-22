@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimaryStaticAnalysis", "PrimaryStaticAnalysis\PrimaryStaticAnalysis.csproj", "{DE2B22E0-4BC8-4815-A444-08C9A4475898}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{F095CC3A-ECF5-4C1E-A1E2-1AF60A1FDC99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corelation", "Corelation\Corelation.csproj", "{774DF34A-D46C-4126-8E03-23C9CF841AE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DE2B22E0-4BC8-4815-A444-08C9A4475898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE2B22E0-4BC8-4815-A444-08C9A4475898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2B22E0-4BC8-4815-A444-08C9A4475898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F095CC3A-ECF5-4C1E-A1E2-1AF60A1FDC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F095CC3A-ECF5-4C1E-A1E2-1AF60A1FDC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F095CC3A-ECF5-4C1E-A1E2-1AF60A1FDC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F095CC3A-ECF5-4C1E-A1E2-1AF60A1FDC99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774DF34A-D46C-4126-8E03-23C9CF841AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774DF34A-D46C-4126-8E03-23C9CF841AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774DF34A-D46C-4126-8E03-23C9CF841AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774DF34A-D46C-4126-8E03-23C9CF841AE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

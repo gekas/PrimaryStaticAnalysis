@@ -18,3 +18,18 @@ C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\Pri
 C:\Users\eherbut\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csproj.GenerateResource.Cache
 C:\Users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\nunit.framework.dll
 C:\Users\gekas\documents\visual studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\nunit.framework.xml
+C:\Users\gekas\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\Utils.dll
+C:\Users\gekas\Documents\Visual Studio 2015\Projects\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\Utils.pdb
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe.config
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.exe
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.pdb
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.exe
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\PrimaryStaticAnalysis.pdb
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\nunit.framework.dll
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\Utils.dll
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\Utils.pdb
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\bin\Debug\nunit.framework.xml
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csprojResolveAssemblyReference.cache
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.MainForm.resources
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.Properties.Resources.resources
+C:\Users\eherbut\Desktop\PrimaryStaticAnalysis\PrimaryStaticAnalysis\obj\Debug\PrimaryStaticAnalysis.csproj.GenerateResource.Cache

@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbSelection2 = new System.Windows.Forms.ListBox();
+            this.lbSelection1 = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvCharacteristicsSelection2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +140,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbSelection2);
+            this.tabPage2.Controls.Add(this.lbSelection1);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.dgvStatisticCriteria);
@@ -149,6 +153,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lab3";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lbSelection2
+            // 
+            this.lbSelection2.FormattingEnabled = true;
+            this.lbSelection2.Location = new System.Drawing.Point(126, 36);
+            this.lbSelection2.Name = "lbSelection2";
+            this.lbSelection2.Size = new System.Drawing.Size(94, 199);
+            this.lbSelection2.TabIndex = 35;
+            // 
+            // lbSelection1
+            // 
+            this.lbSelection1.FormattingEnabled = true;
+            this.lbSelection1.Location = new System.Drawing.Point(16, 36);
+            this.lbSelection1.Name = "lbSelection1";
+            this.lbSelection1.Size = new System.Drawing.Size(94, 199);
+            this.lbSelection1.TabIndex = 34;
             // 
             // groupBox4
             // 
@@ -248,7 +268,7 @@
             this.score,
             this.quantil,
             this.summaryHomoheneity});
-            this.dgvStatisticCriteria.Location = new System.Drawing.Point(7, 35);
+            this.dgvStatisticCriteria.Location = new System.Drawing.Point(341, 33);
             this.dgvStatisticCriteria.Name = "dgvStatisticCriteria";
             this.dgvStatisticCriteria.Size = new System.Drawing.Size(495, 187);
             this.dgvStatisticCriteria.TabIndex = 1;
@@ -410,6 +430,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -522,49 +543,49 @@
             // 
             // crtEmpericalFunction
             // 
-            chartArea3.Name = "ChartArea1";
-            this.crtEmpericalFunction.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.crtEmpericalFunction.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.crtEmpericalFunction.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.crtEmpericalFunction.Legends.Add(legend1);
             this.crtEmpericalFunction.Location = new System.Drawing.Point(502, 34);
             this.crtEmpericalFunction.Name = "crtEmpericalFunction";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series5.Legend = "Legend1";
-            series5.MarkerSize = 1;
-            series5.Name = "Emperical";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series6.Legend = "Legend1";
-            series6.LegendText = "Ф-я распр-я";
-            series6.MarkerSize = 1;
-            series6.Name = "Density";
-            this.crtEmpericalFunction.Series.Add(series5);
-            this.crtEmpericalFunction.Series.Add(series6);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series1.Legend = "Legend1";
+            series1.MarkerSize = 1;
+            series1.Name = "Emperical";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series2.Legend = "Legend1";
+            series2.LegendText = "Ф-я распр-я";
+            series2.MarkerSize = 1;
+            series2.Name = "Density";
+            this.crtEmpericalFunction.Series.Add(series1);
+            this.crtEmpericalFunction.Series.Add(series2);
             this.crtEmpericalFunction.Size = new System.Drawing.Size(407, 178);
             this.crtEmpericalFunction.TabIndex = 28;
             this.crtEmpericalFunction.Text = "chart1";
             // 
             // crtIntervalRow
             // 
-            chartArea4.Name = "ChartArea1";
-            this.crtIntervalRow.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.crtIntervalRow.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.crtIntervalRow.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.crtIntervalRow.Legends.Add(legend2);
             this.crtIntervalRow.Location = new System.Drawing.Point(502, 226);
             this.crtIntervalRow.Name = "crtIntervalRow";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.LegendText = "Частота";
-            series7.MarkerSize = 1;
-            series7.Name = "Frequency";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Legend = "Legend1";
-            series8.LegendText = "Плотность в-и";
-            series8.Name = "ProbabilityDensity";
-            this.crtIntervalRow.Series.Add(series7);
-            this.crtIntervalRow.Series.Add(series8);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.LegendText = "Частота";
+            series3.MarkerSize = 1;
+            series3.Name = "Frequency";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.LegendText = "Плотность в-и";
+            series4.Name = "ProbabilityDensity";
+            this.crtIntervalRow.Series.Add(series3);
+            this.crtIntervalRow.Series.Add(series4);
             this.crtIntervalRow.Size = new System.Drawing.Size(407, 203);
             this.crtIntervalRow.TabIndex = 27;
             this.crtIntervalRow.Text = "chart1";
@@ -830,6 +851,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.ListBox lbSelection2;
+        private System.Windows.Forms.ListBox lbSelection1;
     }
 }
 

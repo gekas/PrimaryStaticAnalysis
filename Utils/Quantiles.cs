@@ -1,7 +1,7 @@
 ﻿using static System.Math;
 using System;
 
-namespace PrimaryStaticAnalysis
+namespace Utils
 {
     public static class Quantiles
     {

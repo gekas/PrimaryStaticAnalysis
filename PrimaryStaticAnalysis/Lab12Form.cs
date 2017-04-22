@@ -1,11 +1,11 @@
 ﻿using PrimaryStaticAnalysis.BL;
 using PrimaryStaticAnalysis.DAL;
-using PrimaryStaticAnalysis.Service;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Utils;
 
 namespace PrimaryStaticAnalysis
 {
@@ -98,8 +98,9 @@ namespace PrimaryStaticAnalysis
             }
         }
 
-        private void FillCharacteristicsGrid(List<double> data, DataGridView dgv)
+        public static void FillCharacteristicsGrid(List<double> data, DataGridView dgv)
         {
+            dgv.Rows.Clear();
             CharacteristicsGridModel gridModel = new CharacteristicsGridModel(dgv);
 
             var avrgScore = StatCharacteristicModel.Average.GetAverage(data);
@@ -150,7 +151,7 @@ namespace PrimaryStaticAnalysis
             gridModel.PirsonCoef.Cells[2].Value = StatCharacteristicModel.ConfidentialBelowBorder(pirsonScore, pirsonDeviation).ToString("G7");
             gridModel.PirsonCoef.Cells[3].Value = StatCharacteristicModel.ConfidentialTopBorder(pirsonScore, pirsonDeviation).ToString("G7");
 
-            dgvCharacteristics.Refresh();
+            dgv.Refresh();
         }
 
         private void btnRefreshIntervalVariationRow_Click(object sender, EventArgs e)
@@ -276,21 +277,6 @@ namespace PrimaryStaticAnalysis
             FillAllData(dataItems);
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var alpha = Double.Parse((string)comboBox1.SelectedItem);
-            var kvantils = FileReader.ReadDensityKvantils();
-            var v = iVariationRow.IntervalVariants.Count - 1;
-            var criticalValue = kvantils.Where(kv => kv.Alpha == alpha).First()[v];
-            var m = StatCharacteristicModel.Average.GetAverage(dataItems);
-            var sigma = StatCharacteristicModel.StandartDeviationNotSkew.GetValue(dataItems);
 
-            dgvPirson.Rows.Clear();
-            var newRowIndex = dgvPirson.Rows.Add();
-            var pirsonStatistic = PirsonCriteria.GetPirsonCriteria(iVariationRow, m, sigma);
-            dgvPirson.Rows[newRowIndex].Cells["statistic"].Value = pirsonStatistic.ToString("#.##");
-            dgvPirson.Rows[newRowIndex].Cells["CriticalValue"].Value = criticalValue;
-            dgvPirson.Rows[newRowIndex].Cells["summary"].Value = pirsonStatistic < criticalValue ? "Достоверно" : "Не достоверно";
-        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PrimaryStaticAnalysis.DAL
 {
-    static class StatCharacteristicModel
+    public static class StatCharacteristicModel
     {
         public static double GetMedian(List<double> data)
         {
@@ -59,7 +59,8 @@ namespace PrimaryStaticAnalysis.DAL
                 double standartDeviation;
 
                 double average = Average.GetAverage(data);
-                standartDeviation = Math.Sqrt(data.Sum(d => (d - average) * (d - average)) / data.Count);
+                // standartDeviation = Math.Sqrt(data.Sum(d => (d - average) * (d - average)) / data.Count);
+                standartDeviation = Math.Sqrt(data.Sum(d => d*d - average*average) / data.Count);
                 return standartDeviation;
             }
 

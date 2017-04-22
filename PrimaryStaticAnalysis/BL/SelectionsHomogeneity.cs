@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Utils;
 
 namespace PrimaryStaticAnalysis.BL
 {
@@ -55,6 +56,8 @@ namespace PrimaryStaticAnalysis.BL
                 var sigma = NormalDistribution.GetSigmaScore(zSelection);
 
                 Statistic = zAvg * Math.Sqrt(N) / sigma;
+                Statistic = double.IsNaN(Statistic) ? 0 : Statistic;
+
                 Quantil = Quantiles.t_Student(1 - alpha / 2, N - 1);
             }
         }
@@ -88,6 +91,8 @@ namespace PrimaryStaticAnalysis.BL
                 {
                     Statistic = ((avg1 - avg2) / Math.Sqrt(((N1 - 1) * d1 + (N2 - 1) * d2) / N1 + N2 - 2)) * Math.Sqrt(N1 * N2 / (N1 + N2));
                 }
+
+                Statistic = double.IsNaN(Statistic) ? 0 : Statistic;
             }
         }
 
@@ -114,6 +119,7 @@ namespace PrimaryStaticAnalysis.BL
                 var D = N1 * N2 * (N1 + N2 + 1) / 12;
 
                 Statistic = (W - E) / Math.Sqrt(D);
+                Statistic = double.IsNaN(Statistic) ? 0 : Statistic;
             }
         }
 
@@ -149,6 +155,7 @@ namespace PrimaryStaticAnalysis.BL
                 }
 
                 Statistic = (T - ET) / Math.Sqrt(DT);
+                Statistic = double.IsNaN(Statistic) ? 0 : Statistic;
                 Quantil = Quantiles.u_Normal(1 - alpha / 2);
             }
         }

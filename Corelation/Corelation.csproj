@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DE2B22E0-4BC8-4815-A444-08C9A4475898}</ProjectGuid>
+    <ProjectGuid>{774DF34A-D46C-4126-8E03-23C9CF841AE3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PrimaryStaticAnalysis</RootNamespace>
-    <AssemblyName>PrimaryStaticAnalysis</AssemblyName>
+    <RootNamespace>CorelationAnalisys</RootNamespace>
+    <AssemblyName>Corelation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -50,29 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\Formulas.cs" />
-    <Compile Include="BL\PirsonCriteria.cs" />
-    <Compile Include="BL\RankSelection.cs" />
-    <Compile Include="BL\SelectionsHomogeneity.cs" />
-    <Compile Include="DAL\CharacteristicsGridModel.cs" />
-    <Compile Include="DAL\DensityKvantil.cs" />
-    <Compile Include="DAL\IntervalVariationRow.cs" />
-    <Compile Include="DAL\StatCharacteristicModel.cs" />
-    <Compile Include="DAL\VariationRow.cs" />
-    <Compile Include="Lab12Form.cs">
+    <Compile Include="BL\CorelationRelation.cs" />
+    <Compile Include="BL\ICorelationCoef.cs" />
+    <Compile Include="BL\KendallCorelationCoef.cs" />
+    <Compile Include="BL\SpearmanCorelationCoef.cs" />
+    <Compile Include="BL\PirsonCorelationCoef.cs" />
+    <Compile Include="CorelationAnalisysForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="CorelationAnalisysForm.Designer.cs">
+      <DependentUpon>CorelationAnalisysForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\RankSelectionTests.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Regression\LinearRegression.cs" />
+    <Compile Include="Regression\RegressionScore.cs" />
+    <EmbeddedResource Include="CorelationAnalisysForm.resx">
+      <DependentUpon>CorelationAnalisysForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,8 +72,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,9 +88,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\PrimaryStaticAnalysis\PrimaryStaticAnalysis.csproj">
+      <Project>{de2b22e0-4bc8-4815-a444-08c9a4475898}</Project>
+      <Name>PrimaryStaticAnalysis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{f095cc3a-ecf5-4c1e-a1e2-1af60a1fdc99}</Project>
       <Name>Utils</Name>
