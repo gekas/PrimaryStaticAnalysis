@@ -1,10 +1,12 @@
 ﻿using PrimaryStaticAnalysis.BL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utils;
+using ZedGraph;
 
 namespace CorelationAnalisys.BL
 {
@@ -34,51 +36,31 @@ namespace CorelationAnalisys.BL
             yRanged.AddSelection(y);
 
             double coef = 0;
-            if (xRanged.Ranks.Where(r => r.Items.Count > 1).Count() == 0
-                 && yRanged.Ranks.Where(r => r.Items.Count > 1).Count() == 0)
+
+            List<PointD> unionSeriaSortedByX =
+xRanged.ranks.Zip(yRanged.ranks.ToList(), (x, y) => new PointD(x, y)).OrderBy(p => p.X).ToList();
+
+            List<double> rx = unionSeriaSortedByX.Select(p => p.X).ToList();
+            List<double> ry = unionSeriaSortedByX.Select(p => p.Y).ToList();
+
+            unionSeriaSortedByX.Select(p => p.X).ToList();
+            double S = 0;
+            for (int i = 0; i < N - 1; i++)
             {
-                double S = 0;
-                for (int i = 0; i < N - 1; i++)
+                for (int j = i + 1; j < N; j++)
                 {
-                    for (int j = i + 1; j < N; j++)
+                    if (rx[i] != rx[j])
                     {
-                        double yiRank = yRanged.Selection.Where(itm => itm.value == y[i]).First().rank;
-                        double yjRank = yRanged.Selection.Where(itm => itm.value == y[j]).First().rank;
-
-                        S += yiRank < yjRank ? 1
-                               : yiRank > yjRank ? -1
-                                   : 0;
-                    }     
-                }
-                    
-
-                coef = S / (0.5 * N * (N - 1));
-            }
-            else
-            {
-                double S = 0;
-                for (int i = 0; i < N - 1; i++)
-                {
-                    for (int j = i + 1; j < N; j++)
-                    {
-                        double xiRank = xRanged.Selection.Where(itm => itm.value == x[i]).First().rank;
-                        double xjRank = xRanged.Selection.Where(itm => itm.value == x[j]).First().rank;
-
-                        double yiRank = yRanged.Selection.Where(itm => itm.value == y[i]).First().rank;
-                        double yjRank = yRanged.Selection.Where(itm => itm.value == y[j]).First().rank;
-
-                        S += yiRank < yjRank && xiRank != xjRank ? 1
-                               : yiRank > yjRank && xiRank != xjRank ? -1
-                                   : 0;
+                        S += ry[j].CompareTo(ry[i]);
                     }
-                       
                 }
 
-                var C = xRanged.Ranks.Where(r => r.Count > 1).Sum(x => x.rank * (x.rank - 1)) / 2;
-                var D = yRanged.Ranks.Where(r => r.Count > 1).Sum(y => y.rank * (y.rank - 1)) / 2;
-
-                coef = S / Math.Sqrt((0.5 * N * (N - 1) - C) * (0.5 * N * (N - 1) - D));
             }
+
+            var C = xRanged.Ranks.Where(r => r.Count > 1).Sum(xr => xr.Count * (xr.Count - 1)) / 2;
+            var D = yRanged.Ranks.Where(r => r.Count > 1).Sum(yr => yr.Count * (yr.Count - 1)) / 2;
+
+            coef = S / Math.Sqrt((0.5 * N * (N - 1) - C) * (0.5 * N * (N - 1) - D));
 
             return coef;
         }

@@ -1,5 +1,4 @@
 ﻿using CorelationAnalisys.BL;
-using CorelationAnalisys.Regression;
 using PrimaryStaticAnalysis.DAL;
 using System;
 using System.Collections.Generic;
@@ -20,6 +19,10 @@ namespace CorelationAnalisys
         private Series sCorelationFied = new Series("Кореляционное поле") { ChartType = SeriesChartType.Point };
         private Series sCorelationFiedClasses = new Series("Классы (кореляционное отн.)") { ChartType = SeriesChartType.Point };
         private Series sLinearRegression = new Series("Линейная регрессия") { ChartType = SeriesChartType.Point };
+        private Series sRegressionInterval = new Series("Дов. интервал на регрессию") { ChartType = SeriesChartType.Point, MarkerSize = 3 };
+        private Series sPrognosisInterval = new Series("Дов. интервал на прогн. знач.") { ChartType = SeriesChartType.Point, MarkerSize = 3 };
+
+        private Series sResidualPlot = new Series() { ChartType = SeriesChartType.Point };
 
         public frmCA()
         {
@@ -27,6 +30,14 @@ namespace CorelationAnalisys
             crtCorelation.Series.Add(sCorelationFied);
             crtCorelation.Series.Add(sCorelationFiedClasses);
             crtCorelation.Series.Add(sLinearRegression);
+            crtCorelation.Series.Add(sRegressionInterval);
+            crtCorelation.Series.Add(sPrognosisInterval);
+
+            crtCorelation.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+
+            crtResidualPlot.Series.Add(sResidualPlot);
+
+            comboBox1.SelectedIndex = 0;
         }
 
         private void btnLoadTwo_Click(object sender, EventArgs e)
@@ -57,26 +68,71 @@ namespace CorelationAnalisys
             }
 
             FillCorelationField();
-            FillLinearRegressionSeria();
-            FillRegressionScores();
+
+            //var lr = new LinearRegression(xData, yData, alpha);
+            //var lr = new ParabolicRegression(xData, yData, alpha);
+
+            Regression rgr = comboBox1.SelectedIndex == 0 ? (Regression)new LinearRegression(xData, yData, alpha)
+                                              : new ParabolicRegression(xData, yData, alpha);
+            FillRegressionData(rgr);
         }
 
-        private void FillLinearRegressionSeria()
+        private void FillRegressionData(Regression rgr)
+        {
+            FillLinearRegressionSeria(rgr);
+            FillRegressionScores(rgr);
+
+            FillDetermTestGrid(rgr.DeterminationCoef);
+            var ra = new ResidualAnalysis(rgr);
+            FillResidualPlot(ra);
+        }
+
+        private void FillResidualPlot(ResidualAnalysis ra)
+        {
+            sResidualPlot.Points.Clear();
+
+            for(int i = 0; i < ra.Residuals.Count; i++)
+            {
+                sResidualPlot.Points.Add(new DataPoint(ra.Residuals[i].RegressionValue, ra.Residuals[i].ResidualValue));
+            }
+        }
+
+        private void FillDetermTestGrid(DetermCoef dtrm)
+        {
+            dgvFtest.Rows.Clear();
+
+            var row = dgvFtest.Rows.Add();
+            dgvFtest.Rows[row].Cells["dgvcDetermCoef"].Value = dtrm.Value.ToString("0.####");
+            dgvFtest.Rows[row].Cells["dgvcStatisticDeterm"].Value = dtrm.Statistic.ToString("0.####");
+            dgvFtest.Rows[row].Cells["dgvcQuantilFisher"].Value = dtrm.Quantil.ToString("0.####");
+            dgvFtest.Rows[row].Cells["dgvcIsDetermCoefSignificant"].Value = dtrm.IsSignificant;
+        }
+
+        private void FillLinearRegressionSeria(Regression lr)
         {
             sLinearRegression.Points.Clear();
-
-            var lr = new LinearRegression(xData, yData, alpha);
+            sRegressionInterval.Points.Clear();
+            sPrognosisInterval.Points.Clear();
 
             foreach (var x in xData)
             {
                 var regressionValue = lr.Calculate(x);
                 sLinearRegression.Points.Add(new DataPoint(x, regressionValue));
+
+                var regresstionIntervalBelow = lr.GetRegressionIntervalBelow(x);
+                var regresstionIntervalTop = lr.GetRegressionIntervalTop(x);
+                sRegressionInterval.Points.Add(new DataPoint(x, regresstionIntervalBelow));
+                sRegressionInterval.Points.Add(new DataPoint(x, regresstionIntervalTop));
+
+                var prognosisIntervalBelow = lr.GetPrognosisIntervalBelow(x);
+                var prognosisIntervalTop = lr.GetPrognosisIntervalTop(x);
+                sPrognosisInterval.Points.Add(new DataPoint(x, prognosisIntervalBelow));
+                sPrognosisInterval.Points.Add(new DataPoint(x, prognosisIntervalTop));
             }
         }
 
-        private void FillRegressionScores()
+        private void FillRegressionScores(Regression lr)
         {
-            var lr = new LinearRegression(xData, yData, alpha);
             dgvRegressionParamScores.DataSource = lr.Scores;
         }
 
@@ -173,5 +229,41 @@ namespace CorelationAnalisys
             dgv.Rows[rowId].Cells[3].Value = StatCharacteristicModel.ConfidentialTopBorder(excessScore, excessDeviation).ToString("G7");
         }
 
+        private void crtCorelation_MouseWheel(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Delta < 0)
+                {
+                    crtCorelation.ChartAreas[0].AxisX.ScaleView.ZoomReset();
+                    crtCorelation.ChartAreas[0].AxisY.ScaleView.ZoomReset();
+                }
+
+                if (e.Delta > 0)
+                {
+                    double xMin = crtCorelation.ChartAreas[0].AxisX.ScaleView.ViewMinimum;
+                    double xMax = crtCorelation.ChartAreas[0].AxisX.ScaleView.ViewMaximum;
+                    double yMin = crtCorelation.ChartAreas[0].AxisY.ScaleView.ViewMinimum;
+                    double yMax = crtCorelation.ChartAreas[0].AxisY.ScaleView.ViewMaximum;
+
+                    double posXStart = crtCorelation.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 4;
+                    double posXFinish = crtCorelation.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 4;
+                    double posYStart = crtCorelation.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) - (yMax - yMin) / 4;
+                    double posYFinish = crtCorelation.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) + (yMax - yMin) / 4;
+
+                    crtCorelation.ChartAreas[0].AxisX.ScaleView.Zoom(posXStart, posXFinish);
+                    crtCorelation.ChartAreas[0].AxisY.ScaleView.Zoom(posYStart, posYFinish);
+                }
+            }
+            catch { }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Regression rgr = comboBox1.SelectedIndex == 0 ? (Regression)new LinearRegression(xData, yData, alpha) 
+                                                          : new ParabolicRegression(xData, yData, alpha);
+
+            FillRegressionData(rgr);
+        }
     }
 }

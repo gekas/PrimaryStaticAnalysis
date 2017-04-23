@@ -1,18 +1,26 @@
-﻿using PrimaryStaticAnalysis.DAL;
+﻿using CorelationAnalisys.BL;
+using PrimaryStaticAnalysis.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Utils;
 
-namespace CorelationAnalisys.Regression
+namespace CorelationAnalisys
 {
-    class LinearRegression
+    class LinearRegression : Regression
     {
-        List<double> xData = new List<double>();
-        List<double> yData = new List<double>();
-        double alpha;
+        public override List<double> xData { get; protected set; }
+        double xavg;
+        public override List<double> yData { get; protected set; }
+        public override double yavg { get; protected set; }
+        public override int N => xData.Count;
+        public override DetermCoef DeterminationCoef { get; }
 
-        public List<RegressionScore> Scores { get; private set; }
+        readonly double alpha;
+        readonly double quantil;
+        public double ResiduesDisp { get; private set; }
+
+        public override List<RegressionScore> Scores { get; protected set; }
 
         private RegressionScore a0;
         private RegressionScore a1;
@@ -21,20 +29,22 @@ namespace CorelationAnalisys.Regression
         {
             xData = _xData;
             yData = _yData;
+            xavg = StatCharacteristicModel.Average.GetAverage(xData);
+            yavg = StatCharacteristicModel.Average.GetAverage(yData);
             alpha = _alpha;
+            quantil = Quantiles.t_Student(1 - alpha / 2, N - 2);
+            
             CalculateScores();
+            DeterminationCoef = new DetermCoef(this, alpha);
         }
 
-        public double Calculate(double x)
+        public override double Calculate(double x)
         {
             return a0.Value + a1.Value * x;
         }
 
         private void CalculateScores()
         {
-            var xavg = StatCharacteristicModel.Average.GetAverage(xData);
-            var yavg = StatCharacteristicModel.Average.GetAverage(yData);
-
             var xy = xData.Zip(yData, (x, y) => x * y).ToList();
             var xPow2 = xData.Select(x => x * x).ToList();
 
@@ -44,7 +54,7 @@ namespace CorelationAnalisys.Regression
             var a1Value = (xyavg - xavg * yavg) / (xPow2avg - xavg * xavg);
 
             var a0Value = yavg - a1Value * xavg;
-            var quantil = Quantiles.t_Student(1 - alpha / 2, xData.Count - 2);
+           
 
             a0 = new RegressionScore()
             {
@@ -55,52 +65,34 @@ namespace CorelationAnalisys.Regression
 
             a1 = new RegressionScore() { Name = "a1", Value = a1Value, Quantil = quantil };
             Scores = new List<RegressionScore> { a0, a1 };
+            ResiduesDisp = GetResiduesDisp();
 
             a0.Dispersion = GetDispA0();
-            a0.Statistic = a0Value / Math.Sqrt(GetDispA0());
-            a0.IntervalBelowBorder = GetBelowBorder(a0);
-            a0.IntervalTopBorder = GetTopBorder(a0);
 
             a1.Dispersion = GetDispA1();
-            a1.Statistic = a1Value / Math.Sqrt(GetDispA1());
-            a1.IntervalBelowBorder = GetBelowBorder(a1);
-            a1.IntervalTopBorder = GetTopBorder(a1);
+            //a1.Statistic = a1Value / Math.Sqrt(GetDispA1());
         }
 
         private double GetDispA0()
         {
-            var residuesDisp = ResiduesDisp();
-
             var xPow2Sum = xData.Sum(x => x*x);
-            var Npow2 = xData.Count * xData.Count;
+            var Npow2 = N*N;
             var xDispersion = StatCharacteristicModel.StandartDeviationSkew.GetValue(xData);
             xDispersion *= xDispersion;
 
-            return residuesDisp * xPow2Sum / (Npow2 * xDispersion);
+            return ResiduesDisp * xPow2Sum / (Npow2 * xDispersion);
         }
 
         private double GetDispA1()
         {
-            var residuesDisp = ResiduesDisp();
-            var N = xData.Count;
             var xDispersion = StatCharacteristicModel.StandartDeviationSkew.GetValue(xData);
             xDispersion *= xDispersion;
 
-            return N * residuesDisp / (N * N * xDispersion);
-        }
-
-        private double GetBelowBorder(RegressionScore  score)
-        {
-            return score.Value - score.Quantil * Math.Sqrt(score.Dispersion);
-        }
-
-        private double GetTopBorder(RegressionScore score)
-        {
-            return score.Value + score.Quantil * Math.Sqrt(score.Dispersion);
+            return N * ResiduesDisp / (N * N * xDispersion);
         }
 
         // Sзал^2
-        private double ResiduesDisp()
+        private double GetResiduesDisp()
         {
             double sum = 0;
             for (int i = 0; i < yData.Count; i++)
@@ -108,7 +100,35 @@ namespace CorelationAnalisys.Regression
                 sum += (yData[i] - Calculate(xData[i])) * (yData[i] - Calculate(xData[i]));
             }
 
-            return sum / (xData.Count - Scores.Count);
+            return sum / (N - Scores.Count);
+        }
+
+        public override double GetRegressionIntervalBelow(double x)
+        {
+            var dispersion = ResiduesDisp / N + a1.Dispersion * (x - xavg) * (x - xavg);
+
+            return Calculate(x) - quantil * Math.Sqrt(dispersion);
+        }
+
+        public override double GetRegressionIntervalTop(double x)
+        {
+            var dispersion = ResiduesDisp / N + a1.Dispersion * (x - xavg) * (x - xavg);
+
+            return Calculate(x) + quantil * Math.Sqrt(dispersion);
+        }
+
+        public override double GetPrognosisIntervalBelow(double x)
+        {
+            var dispersion = ResiduesDisp / N + a1.Dispersion * (x - xavg) * (x - xavg) + ResiduesDisp;
+
+            return Calculate(x) - quantil * Math.Sqrt(dispersion);
+        }
+
+        public override double GetPrognosisIntervalTop(double x)
+        {
+            var dispersion = ResiduesDisp / N + a1.Dispersion * (x - xavg) * (x - xavg) + ResiduesDisp;
+
+            return Calculate(x) + quantil * Math.Sqrt(dispersion);
         }
     }
 }

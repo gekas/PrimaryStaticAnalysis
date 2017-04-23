@@ -39,6 +39,8 @@ namespace CorelationAnalisys.BL
             double bottomSum = 0;
             for (int i = 0; i < Math.Floor(k); i++)
             {
+                if (DataClasses[i].Y.Count == 0) continue;
+
                 var yAvgInClass = StatCharacteristicModel.Average.GetAverage(DataClasses[i].Y);
                 topSum += DataClasses[i].Y.Count * (yAvgInClass - yavg) * (yAvgInClass - yavg);
 
@@ -104,7 +106,7 @@ namespace CorelationAnalisys.BL
 
                 curClass.Y = ys;
 
-                DataClasses.Add(curClass);
+               DataClasses.Add(curClass);
             }
         }
     }

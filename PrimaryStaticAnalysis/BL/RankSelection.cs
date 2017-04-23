@@ -10,13 +10,16 @@ namespace PrimaryStaticAnalysis.BL
 
         public List<SelectionItem> Selection = new List<SelectionItem>();
         public List<Rank> Ranks = new List<Rank>();
-
+        public List<double> data = new List<double>();
+        public List<double> ranks = new List<double>();
         public int Count => Selection.Count;
 
         public bool IsReadOnly => false;
 
         public int AddSelection(List<double> data)
         {
+            this.data.AddRange(data);
+
             var newSelection = data.Select(x => new SelectionItem { value = x, selection = nextSelectionNumber });
             Selection.AddRange(newSelection);
 
@@ -24,6 +27,9 @@ namespace PrimaryStaticAnalysis.BL
             SetRanks();
 
             RefreshRanksCollection();
+
+            ranks.Clear();
+            for (int i = 0; i < data.Count; i++) ranks.Add(Selection.Where(s=>s.value==data[i]).First().rank);
             return nextSelectionNumber++;
         }
 
@@ -66,6 +72,11 @@ namespace PrimaryStaticAnalysis.BL
         public List<SelectionItem> Items = new List<SelectionItem>();
         public int Count => Items.Count;
         public double rank;
+
+        public override string ToString()
+        {
+            return rank.ToString();
+        }
     }
 
     public class SelectionItem : IComparable
